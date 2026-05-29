@@ -1,0 +1,639 @@
+/* ==UserStyle==
+@name           Better Yandex (.BY)
+@namespace      dev.kodoomer
+@version        1.0.2
+@description    https://github.com/kodoomer/ya
+@preprocessor   default
+@author         kodoomer
+
+@var checkbox   BY-darkMode "Темный режим (для страниц которые его не поддерживают)" 1
+@var checkbox   BY-blockSites "Блокировать веб-сайты (стандарт. вики-копии)" 1
+@var checkbox   BY-hpWeather "Оставить погоду на главной странице" 1
+@var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" '"дальше"'
+@var text       BY-ceeNextBtn "^^^ но для i++" '"i++"'
+@var checkbox   BY-enableWarn "Показывать предупреждение о нахождении на .ru домене" 1
+==/UserStyle== */
+
+@-moz-document regexp("(Global)?^https?:\\/\\/yandex\\.by\\/?.*$") {
+  /* Общие стили */
+  
+  div.Distribution /* Реклама Яндекс Браузера */
+  {
+    display: none !important;
+  }
+}
+
+@-moz-document regexp("(Search)?^https?:\\/\\/yandex\\.by(\\/\\w+)?\\/search\\/?(\\?.*)?$") {
+  /* Поиск */
+  
+  a[class*='InfoLink'][href*='photosearch'],              /* Кнопка (i) в поиске по картинке */
+  .Popup2:has(a[href*='photosearch']) .CbirPanel-History, /* Кнопка "История поисков" в окне "Визуальный поиск" */
+  .HeaderUser-LoginButton,                                /* Кнопка "Войти" сверху */
+  .SerpFooter,                                            /* Футер поиска */
+  .EmptyPage-Recommendations,                             /* Рекомендации если ничего не найдено */
+  .mini-suggest__item_type_nav,                           /* Ссылки в предложениях поиска */
+  /* Категории поиска */
+  .HeaderNav-Tab[href*="/maps"],                          /* Карты */
+  .HeaderNav-Tab[href*="/all"]                            /* Все */
+  {
+    display: none !important;
+  }
+  
+  /* Поправить цвет иконки в окне "Визуальный поиск" */
+  .CbirAnimLogo-FrontImageSun, .CbirAnimLogo-FrontImageSmallRock, .CbirAnimLogo-FrontImageBigRock {
+    fill: var(--depot-color-control-primary) !important;
+  }
+  
+  /* Общий стиль поп-ап меню */
+  body.i-ua_skin_dark {
+    .UserDialog, 
+    .UserWidget-Dialog {
+      background-color: #232325 !important;
+    }
+    .UserWidget-Dialog {
+      border: 1px solid var(--depot-color-stroke);
+    }
+  }
+  .UserWidget-Content_colorScheme_dark {
+    background-color: #232325 !important;
+  }
+  .UserDialog-Content, .UserWidget-IframeContainer, .UserWidget-Iframe {
+    height: 400px !important;
+  }
+  .UserWidget-Spin {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Пустое место перед концом страницы */
+  .SerpFooter-Wrapper {
+    margin-bottom: 44px;
+  }
+  
+  /* Макс. ширина и больший пробел от поиска */
+  .mini-suggest__popup {
+    margin-top: 6px;
+    max-width: 100%;
+  }
+}
+
+@-moz-document regexp("(Text search)?^https?:\\/\\/yandex\\.by\\/search\\/?(\\?.*)?$") {
+  /* Поиск текста */
+  
+  .RelatedBottom,                                  /* Люди ищут (снизу) */
+  .VideoFooter,                                    /* Кнопка "Смотреть все видео" после карусели видео */
+  .ImagesGridMore,                                 /* Кнопка "Все картинки" в сетке картинок */
+  #search-result-aside > div:has(*[class*='adv']), /* Реклама на правой стороне */
+  .b-page__footer,                                 /* Футер поиска */
+  /* Карточки справа */
+  .Popup2:has(.AuthorizationNeeded),               /* Поп-ап "войди что-бы послушать песню" */
+  .RatingDynamicTen,                               /* Секция "Как вам сериал?" */
+  .CardHeader-FavoriteButton,                      /* Кнопка избранное */
+  .Review-Footer                                   /* Лайк, дизлайк на отзывы */
+  {
+    display: none !important;
+  }
+  
+  /* Скрыть результаты поиска */
+  ul[id^="search-"] > li {
+    & .Organic-Actions, /* Кнопка посмотреть PDF */
+    /* Реклама в результатах поиска (добавлять) */
+    &:has(.Organic-ContentWrapper > .OrganicText > div) /* "Реклама" перед описанием */
+    {
+      display: none !important;
+    }
+  }
+  /* Если включена блокировка вебсайтов */
+  @container style(--BY-blockSites: 1) {
+    ul[id^="search-"] > li {
+      /* 
+        Конкретные сайты (можно кастомизировать!)
+        Форматы: 
+          По ссылке: &:has(.OrganicTitle-Link[href*="<ССЫЛКА>"]),
+      */ 
+      &:has(.OrganicTitle-Link[href*="ruwiki.ru"]),                  /* ruwiki.ru */
+      &:has(.OrganicTitle-Link[href*="xn--h1ajim.xn--p1ai"]),        /* руни.рф */
+      &:has(.OrganicTitle-Link[href*="mozgotvet.com"]),              /* mozgotvet.com */
+      &:has(.OrganicTitle-Link[href*="chatinfo.ru"])                 /* chatinfo.ru */
+      {
+        display: none !important;
+      }
+    }
+  }
+  
+  /* Поправка отступа с пасхалкой */
+  .Pager_cee .Pager-Item_type_next {
+    padding-left: 16px !important;
+  }
+  
+  /* Свой текст на кнопке дальше в списке страниц */
+  .Pager-Item_type_next {
+    & span::before {
+      font-size: 18px;
+      content: var(--BY-nextBtn);
+    }
+    .Pager_cee & span::before {
+      content: var(--BY-ceeNextBtn);
+    }
+    & span {
+      font-size: 0;
+    }
+  }
+}
+
+@-moz-document regexp("(Images search)?^https?:\\/\\/yandex\\.by\\/images\\/search\\/?(\\?.*)?$") {
+  /* Поиск картинок */
+  
+  .ImagesViewer-Buttonfullscreen,                 /* Кнопка полного экрана у изображения */
+  div[class*="-Card"]:has(div[class*='ImagesV']), /* Реклама справа у изображения */
+  .JustifierRowLayout-Incut,                      /* Реклама в списке изображений */
+  .ImagesViewer-LayoutBottomblock                 /* Зона "Смотрите также" под изображением */
+  {
+    display: none !important;
+  }
+  
+  /* Поправить размер окна просмотра, если была секция "Смотрите также" */
+  .ImagesViewer-Layout {
+    border-radius: 24px !important;
+    height: unset !important;
+  }
+  
+  /* Поправить положение опций поиска */
+  .ImagesApp .AppAdvancedSearch {
+    top: 112px !important;
+  }
+  
+  /* Стили поиска по картинке */
+  section[aria-labelledby="cbir-similar-title"] > a, /* Секция "Похожие": кнопка "Больше похожих" */
+  section[aria-labelledby="cbir-sites-title"] > a    /* Секция "Сайты": кнопка "Смотреть все" */
+  {
+    display: none !important;
+  }
+}
+
+@-moz-document regexp("(Video search & preview)?^https?:\\/\\/yandex\\.by\\/video\\/.*?$") {
+  /* Поиск видео */
+  
+  #lang-filter-short-button,                                     /* Кнопка "В переводе нейросетей" в опциях поиска */
+  .Popup2:has(.SettingsToolbarLangFilterDistributionOnboarding), /* Поп-ап под кнопкой "В переводе нейросетей" */
+  .SerpListFeature > li:not(.VideoSnippetSerpFeature),           /* Реклама в списке видео */
+  .SearchPageGridDirect,                                         /* Реклама в сетке видео */
+  .VideoExtralinks                                               /* Три точки у видео */
+  {
+    display: none !important;
+  }
+  
+  /* Разделитель между кнопкой режима отображения и опциями поиска */
+  .SearchLayoutToggle {
+    border-right: 1px solid var(--depot-color-stroke) !important;
+    padding-right: 8px !important;
+  }
+  
+  /* Поравить расстояние от опций поиска */
+  .SettingsToolbar {
+    margin-bottom: 12px !important;
+  }
+  
+  /* Просмотр видео */
+  .VideoViewer-DetailsButtonsContainer,                          /* Меню у названия видео */
+  ol[class*='-VideoList'] > div,                                 /* Реклама в похожих видео */
+  div:has( > .DirectInlineContainer)                             /* Реклама в проигрывателе */
+/*   div[class*='-Layout'] > div[class*='_placement_before-player'] /* Реклама над проигрывателем */ 
+  {
+    display: none !important;
+  }
+  
+  /* Поправка размера проигрывателя */
+  .Modal_videoViewer .Modal-Content {
+    padding-bottom: 8px !important;
+    border-radius: 24px !important;
+  }
+  .Modal_videoViewer .Modal-Cell {
+    padding: 12px 48px !important;
+    height: calc(100% - 24px) !important;
+  }
+}
+
+@-moz-document regexp("(.RU global)?^https:\\/\\/ya(ndex)?\\.ru\\/.*$") {
+  /* Страницы yandex.ru */
+  
+  /* Показать предупреждение */
+  @container style(--BY-enableWarn: 1) {
+    body::before {
+      content: "Если вы хотите использовать UserCSS \"Better Yandex\", переключитесь с русской версии (.RU) на белорусскую (.BY). Язык не должен поменяться";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px;
+      background: #222224;
+      z-index: 9999999;
+      max-width: 300px;
+      opacity: 0;
+      animation: 6s linear BY-disappear;
+      pointer-events: none;
+      color: white;
+    }
+
+    @keyframes BY-disappear {
+      0%, 99% {
+        opacity: 0.9;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@-moz-document regexp("(Homepage)?^https?:\\/\\/yandex\\.by\\/?(\\?.*)?$") {
+  /* Главная страница! */
+  
+  .headline__personal > *:not(:has(> .usermenu-portal)),                   /* Все в хедлайн кроме меню */
+  .alerts,                                                                 /* Сообщения (о погоде, т.д.) */
+  .search3__wrapper + div[class^='body__'] > div,                          /* Реклама под поиском */
+  div[class^='body'] > div[class*='-spacer'],                              /* Пустое место над поиском */
+  *:has(> a[data-statlog*=".weather"])                                     /* Информеры под поиском */ 
+  {
+    display: none !important;
+  }
+  
+  /* Показать погоду если включена настройка */
+  @container style(--BY-hpWeather: 1) {
+    *:has(> a[data-statlog*=".weather"]) {
+      display: flex !important;
+    }
+    *:has(> a[data-statlog*=".weather"]) > *:not([data-statlog*=".weather"]) {
+      display: none !important;
+    }
+  }
+
+  /* Поиск по центру */
+  .body__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .headline {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+  
+  /* Круглый хавер результатов */
+  div[id^='suggest-item-'] {
+    border-radius: 99999px !important;
+  }
+  
+  /* Общий стиль поп-ап меню */
+  .usermenu-portal__popup {
+    height: 400px !important;
+  }
+  .usermenu-portal__spin {
+    width: 32px !important;
+    height: 32px !important;
+    border: 2px solid transparent !important;
+    border-top-color: var(--depot-color-fill-80) !important;
+    border-left-color: var(--depot-color-fill-80) !important;
+  }
+}
+
+@-moz-document regexp("(Settings)?^https?:\\/\\/yandex\\.by\\/tune\\/?.*$") {
+  /* Настройки (поп-ап) */
+  
+  /* Скрыть кнопку войти */
+  .login {
+    display: none !important;
+  }
+}
+
+@-moz-document regexp("(Pop-up menu)?^https?:\\/\\/yandex\\.by\\/user-id\\/?(\\?.*)?$") {
+  /* Меню (поп-ап) */
+  
+  div[data-log="header"] > div[class*="content_"],            /* "Войдите в аккаунт" */
+  div[data-log="menu"]:has(a[data-testid="mail"]),            /* Часть меню с сервисами */
+  div[data-log="menu"]:has(a[data-log="confidential"]),       /* Часть меню с политикой конф. */
+  div[data-log="menu"]:has(a[data-log="company"]),            /* Часть меню с "О компании" */
+  div[role="separator"]:not(:nth-of-type(4)),                 /* Двойной разделитель в одинарный */
+  a[data-testid="passport"],                                  /* Кнопка "Уравление аккаунтом" */
+  a[data-testid="support"],                                   /* Кнопка "Справка" */
+  div[class*="side_"] path[fill='var(--id-logo-brand-color)'] /* "ID" в логотипе */
+  {
+    display: none !important;
+  }
+  
+  /* Поправить расстояние между заголовком и меню */
+  div[data-log="header"] {
+    margin-bottom: 24px;
+  }
+  
+  /* Поправить (общие) цвета */
+  body:not([data-color="light"]) {
+    &, & * {
+      --id-color-surface-elevated-0: #232325 !important;
+      --id-color-surface-elevated-100: #2f2f30 !important;
+    }
+  }
+  
+  /* Поправить размер и отключить ссылку логотипа */
+  a:has(path[fill='var(--id-logo-brand-color)']) {
+    pointer-events: none;
+    --id-logo-short-height: 24px !important;
+  }
+}
+
+@-moz-document regexp("(Yandex web cache)?^https?:\\/\\/yandexwebcache\\.net\\/yandbtm\\/?(\\?.*)?$") {
+  /* Веб-кеш страниц */
+  
+  /* Только если темный режим включен */
+  @container style(--BY-darkMode: 1) {
+    /* Заголовок: темный режим */
+    #yandex-cache-hdr {
+      & { 
+        background-color: #232325;
+        border-bottom: 3px solid hsla(0,0%,100%,.12) !important;
+      }
+      & * {
+        color: rgba(255, 255, 255, 0.75) !important;
+        fill: rgba(255, 255, 255, 0.75) !important;
+      }
+      & a:hover *,  & a:hover,
+      & > div > span * /* Выделенный режим */
+      {
+        color: white !important;
+        fill: white !important;
+      }
+      & > div b::after { /* Подсветка выделенного режима */
+        border-color: white !important;
+      }
+    }
+
+    /* Режим "Только текст": темный режим (и стили) */
+    body:has(#yandex-cache-hdr span path[d^='M3.5.003h4.757A3']) {
+      & { /* Фон */
+        background-color: #18181a;
+      }
+      & div[style="position:relative"] {
+        & { /* Страница */
+          background-color: #18181a;
+          color: white;
+          font: 14px arial, sans-serif;
+        }
+        & a {
+          color: rgba(255, 255, 255, 0.75) !important;
+        }
+        & a[href]:hover *, & a[href]:hover, & button:hover {
+          color: white !important;
+          fill: white !important;
+        }
+        & input {
+          border-radius: 8px !important;
+          cursor: auto !important;
+        }
+        & button, & input {
+          padding: 7px 12px 7px 12px;
+          border-radius: 16px;
+          background-color: rgba(255, 255, 255, 0.1);
+          border: 0 !important;
+          color: rgba(255, 255, 255, 0.75) !important;
+          cursor: pointer;
+          position: relative;
+        }
+      }
+    }
+  }
+}
+
+@-moz-document regexp("(Weather)?^https?:\\/\\/yandex\\.by\\/pogoda\\/?.+$") {
+  /* Стили погоды */
+  
+  dialog[class*="RateMe_dialog"],                          /* Поп-ап "Как вам Яндекс Погода?" */
+  div[class*="AppPromoInner_container"],                   /* Реклама приложения */
+  div[class*='AppLeftPanelPromos_bottomLinks'],            /* Нижние ссылки на левом меню */
+  div[class*='MainPage_topBlockWithMoney'],                /* Реклама на главной странице */
+  section:has(> iframe[class*="Camera_camera__stream"]),   /* Запись камеры на главной странице */
+  article[class*='AppMapsWidget_article'],                 /* Блок "Прогноз погоды на картах" (не нужен) */
+  section:has(> article[class*='AppBlogPreview_article']), /* Превью блога */
+  article[class*='AppMainPageMonthLink_month'],            /* Кнопка "Пргноз на месяц" (не нужна) */
+  #footer_ecom_adv,                                        /* Скроллер с рекламой */
+  section[class*='AppWeatherFAQ_section'],                 /* FAQ о погоде */
+  div[class*='AppOtherCities_container'],                  /* Список других городов в футере */
+  div[class*="AppFooterLinks_links"],                      /* Ссылки в футере */
+  div[class*='AppFooterMeteumAboutText'],                  /* Про Meteum в футере */
+  div[class*="AppReportForm_container"],                   /* Да/Нет у погоды */
+  aside:has(div[class*='AppMoneySidebar']),                /* Реклама справа */
+  div[class*='AppSettingsClientModalUser_container'],      /* Кнопка войти в настройках */
+  div[class*='FavoriteButton_favorite'],                   /* Кнопка "В избранное" у города */
+  div:has(> div[class*='AppWidgetNowcast_promoWrap']),     /* Реклама и вопросы снизу карты */
+  div[class*='style_cameraPlacemark'],                     /* Точки камер на карте */
+  div[class*='Layers_umbrellaPointLayer'],                 /* Зонтики на карте */
+  div[class*='AppWidgetNowcastButton_wrap'],               /* Кнопка "Карта осадков" на главной странице */
+  li[class*='AppForecastMoney_wrap'],                      /* Реклама в прогнозе */
+  div[class*="AppWidgetNowcast_promoWrap"],                /* Реклама у карты на главной странице */
+  div[class*="AppBlogArticlesSuggest_suggest"],
+  div[class*='_adv_'],                                     /* Реклама */
+  div[class*="AppAllergyDoctors_container"],               /* Секция "Отвечают врачи" на странице пыльцы */
+  ul[class*='AppHeaderNavigation_list'] > li:last-child,   /* Опция "Статьи о погоде" в меню */
+  *[class*='AppMoney'],                                    /* Реклама */
+  div[class*="AppAllergyLevels_report"],                   /* Секция "Как ощущается аллергия" */
+  div[class*='AppGdprPanel_wrapper'],                      /* Настройки куки */
+  div[class*='MainDetailsLinks_wrapper'],                  /* Ссылки на категории (не нужны) */
+  div[class*='AppAllergyForecast_maps__expandIcon']        /* Кнопка расширить на мини карте пыльцы */
+  {
+    display: none !important;
+  }
+  
+  /* Расширяет карты до правильного размера */
+  main[class*="AppLayoutTypeMaps_main"] {
+    padding: 0 !important;
+  }
+  
+  /* Поправка цветов в настройках */
+  dialog[class*='AppSettingsClientModal_popover'] div[class*='DialogsContent_content'] > div {
+    background-color: var(--surface-elevated-200) !important;
+  }
+  div[class*='RadioGroup_toggle__bg'] {
+    background-color: var(--decor-neutral-50) !important;
+  }
+  
+  /* Открепить заголовок */
+  header[class*='AppHeader_header'] {
+    position: relative;
+  }
+  
+  /* Открепить левое меню */
+  aside[class*='AppLayoutTypeMain_left'] {
+    position: static;
+  }
+  
+  /* Полноразмерная страница */
+  main[class*="AppLayoutTypeMain_main"] {
+    & > article > div, 
+    & > section {
+      margin: 0;
+      max-width: unset;
+    }
+  }
+  
+  /* Поправка высоты блока "Магнитные бури" */
+  div[class*='AppMagneticStormsChart_charts'] {
+    margin-bottom: 0;
+  }
+  
+  /* Поправка высоты блока "Активность пыльцы" */
+  div[class*="AppAllergyCalendar_wrap"] {
+    margin: 0;
+  }
+  
+  /* Поправка списка деревьев с пыльцой */
+  div[class*='AppAllergyForecast_allergensList'] {
+    display: flex !important;
+  }
+  
+  /* Кнопка меню */
+  button[class*='AppAccordion_summary'] {
+    /* Поправка размера */
+    & {
+      width: var(--layout-left-panel) !important;
+    }
+    /* Анимация стрелки */
+    & > svg {
+      transition: transform .3s ease-in;
+    }
+    /* Цвет выделения */
+    &:hover, &:focus {
+      background-color: unset;
+      color: var(--link-default-hovered);
+    }
+  }
+  
+  /* Скрытие настроек */
+  ul[class*='AppSettingsClientModal_content__list'] > li {
+    /* Скрыть все настройки */
+    & {
+      display: none;
+    }
+    /* Показать "Единицы измерений" */
+    &:has(path[d*='3H3a1']) {
+      display: unset;
+    }
+    /* Показать "Выбор языка" (надо поправить этот стиль) */
+    &:has(span[class*='AppSettingsClientModal_item__name']):not(:has(span[class*='AppSettingsClientModal_item__name'] svg)) {
+      display: unset;
+    }
+  }
+  
+  /* Поправить пробел в найстройках */
+  div[class*='AppSettingsClientModalTheme_theme'] {
+    margin-bottom: 0;
+    padding-bottom: 8px;
+  }
+  
+  /* Лэйаут погоды grid -> flex */
+  
+  header[class*='AppHeader_header'] {
+    display: flex;
+    max-width: none;
+    margin: 0;
+  }
+  div[class*='AppHeader_logo'] {
+    width: calc(var(--layout-left-panel) - 16px);
+  }
+  form[class*='Suggest_form'] {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  main[class*='AppLayoutTypeMain_main']:has(> section[class*='AppWidgetNowcast_container']) {
+    padding: 0;
+  }
+  div[class*='AppLayoutTypeMain_contentWrapper'] {
+    margin: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    width: unset;
+  }
+  aside[class*='AppLayoutTypeMain_left'] {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: var(--layout-left-panel) !important;
+  }
+  div[class*='AppLayoutTypeMain_centerWrapper'] {
+    display: block;
+    flex: 1;
+    width: 0;
+  }
+  div[class*='AppAccordion_details'] {
+    position: absolute;
+  }
+  div[class*='AppLayoutCommon_overlay'] {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+
+@-moz-document regexp("(Translator)?^https?:\\/\\/translate\\.yandex\\.com\\/?.*$") {
+  /* Стили переводчика */
+  
+  .side-block > div,                                                                   /* Реклама справа */
+  #gptTutorEntry,                                                                      /* Ввод "Спросить Переводчик AI" */
+  #popularTranslations,                                                                /* Описание и популярные направления перевода */
+  a[data-page-name="editor"]:not([class*="_active"]),                                  /* Вклдака "Редактор" (Переводчик AI) */
+  a[data-page-name="collections"]:not([class*="_active"]),                             /* Вкладка "Подборки" (сохраненные переводы) */
+  .userMenu-currentUser,                                                               /* Кнопка "Войти" в настройках */
+  #examplesApp div:has(> h2),                                                          /* Секция "Популярные направления" в примерах */
+  #srcTypeTranslation,                                                                 /* Кнопка "Быстрый перевод" (вкл./выкл. Переводчик AI) */
+  #yaGptDstNextGenContainer,                                                           /* Определение от Переводчик AI */
+  div:has(> div > div > div > svg > g[filter*='url(#promo-type-translation_svg__a)']), /* Реклама Переводчик AI если в переводе не введен текст */
+  div:has(> div[data-qa="translation-feedback"]),                                      /* Кнопки у перевода (лайк, поделиться и т.д.)*/
+  li:has(> a[data-tracker-goal="FOOTER_LINK_NAVIGATE_BROWSER"]),                       /* Кнопка "Переводите в Яндекс Браузере" в футере */
+  #dstDefinition,                                                                      /* Определения слова в окне результата (википедия) */
+  .FeedbackOverlay                                                                     /* Поп-ап оценки перевода */
+  {
+    display: none !important;
+  }
+
+  /* Черно-белая кнопка иконка чата с поддержкой в футере */
+  a[title="Чат с поддержкой"] > svg {
+    filter: grayscale(1) !important;
+  }
+
+  /* Более круглое выделение языка */
+  .langs-item, #langsSelect > .ReactModalPortal li, input {
+    border-radius: var(--border-radius_s) !important;    
+  }
+  
+  /* Удаление разделителя кнопки "Войти" в настройках */
+  .userMenu-settings {
+    border: 0;
+  }
+  
+  /* Иконка пользователя в нижнем левом игру -> три точки */
+  #icn-profile path {
+    d: path("M17.25 12a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0m-14 0a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0M12 13.75a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5") !important;
+  }
+  
+  /* Работает только со скриптом */
+  @container style(--BY-hasAddOn) {
+    #trDocModeSwitcher,          /* Выбор типа перевода документа */
+    #trDocModeSwitcher-infoPopup /* Поп-ап о улучшеном переводе PDF */
+    {
+      display: none !important;
+    }
+
+    /* Поправка размера блока для загрузки файлов */
+    .fileContainer-block {
+      margin: 8px !important;
+      height: unset !important;
+    }
+    #docContainer {
+      display: flex !important;
+    }
+  }
+  
+  /* Попрака нижнего отступа ввода */
+  #textarea {
+    border-bottom-width: 72px;
+  }
+}
