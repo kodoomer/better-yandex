@@ -1,5 +1,5 @@
 ## Better Yandex
-*UserCSS для Яндекса* [![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-238b8b.svg)](//github.com/kodoomer/better-yandex/raw/refs/heads/main/BY.user.css) 
+*UserCSS для Яндекса* [![Install directly with Stylus](//img.shields.io/badge/Install%20directly%20with-Stylus-238b8b.svg)](//raw.githubusercontent.com/kodoomer/better-yandex/main/BetterYandex.user.css) 
 
 > [!IMPORTANT]
 > Стиль сделан и работают только на [беларусском Яндексе (.by)](//yandex.by), поскольку на нем не встроен ИИ на каждом углу. \
