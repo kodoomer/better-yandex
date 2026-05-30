@@ -1,6 +1,6 @@
 {
     "createdBy": "Redirector v3.5.3",
-    "createdAt": "2026-05-30T09:07:59.464Z",
+    "createdAt": "1996-05-30T09:07:59.464Z",
     "redirects": [
         {
             "description": "yandex.RU -> yandex.BY",
@@ -16,8 +16,7 @@
             "disabled": false,
             "grouped": false,
             "appliesTo": [
-                "main_frame",
-                "sub_frame"
+                "main_frame"
             ]
         },
         {
