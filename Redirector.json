@@ -1,0 +1,41 @@
+{
+    "createdBy": "Redirector v3.5.3",
+    "createdAt": "2026-05-30T09:07:59.464Z",
+    "redirects": [
+        {
+            "description": "yandex.RU -> yandex.BY",
+            "exampleUrl": "https://yandex.ru/search?text=hello%20world",
+            "exampleResult": "https://yandex.by/search?text=hello%20world",
+            "error": null,
+            "includePattern": "https?:\\/\\/yandex\\.ru(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yandex.by$1",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame",
+                "sub_frame"
+            ]
+        },
+        {
+            "description": "ya.RU -> yandex.BY",
+            "exampleUrl": "https://ya.ru/search?text=hello%20world",
+            "exampleResult": "https://yandex.by/search?text=hello%20world",
+            "error": null,
+            "includePattern": "https?:\\/\\/ya\\.ru(.*)",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://yandex.by$1",
+            "patternType": "R",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        }
+    ]
+}
