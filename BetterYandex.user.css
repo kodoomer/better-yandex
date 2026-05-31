@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.0.2
+@version        1.0.3
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -96,10 +96,11 @@
   }
   
   /* Скрыть результаты поиска */
-  ul[id^="search-"] > li {
+  ul[id^="search-"] > * {
     & .Organic-Actions, /* Кнопка посмотреть PDF */
     /* Реклама в результатах поиска (добавлять) */
-    &:has(.Organic-ContentWrapper > .OrganicText > div) /* "Реклама" перед описанием */
+    &:has(.Organic-ContentWrapper > .OrganicText > div), /* "Реклама" перед описанием */
+    &:not(li)                                            /* Общее правило */
     {
       display: none !important;
     }
