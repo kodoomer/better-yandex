@@ -2,13 +2,13 @@
     "redirects": [
         {
             "description": "ya(ndex).RU -> yandex.BY",
-            "exampleUrl": "https://yandex.ru/search?text=hello%20world",
-            "exampleResult": "https://yandex.by/search?text=hello%20world",
+            "exampleUrl": "https://sd.ya.ru/page?text=h%20w&test",
+            "exampleResult": "https://sd.yandex.by/page?text=h%20w&test",
             "error": null,
-            "includePattern": "https?:\\/\\/ya(ndex)?\\.ru(.*)",
+            "includePattern": "https?:\\/\\/(\\w+\\.)?ya(ndex)?\\.ru(.*)",
             "excludePattern": "",
             "patternDesc": "",
-            "redirectUrl": "https://yandex.by$2",
+            "redirectUrl": "https://$1yandex.by$3",
             "patternType": "R",
             "processMatches": "noProcessing",
             "disabled": false,
