@@ -18,3 +18,4 @@
 - Поиск видео (и просмотр) (`/video/*`)
 - Переводчик (`translate.yandex.COM`)
 - Погода (`/pogoda`)
+- Веб-кеш (`yandexwebcache.net/yandbtm`)
