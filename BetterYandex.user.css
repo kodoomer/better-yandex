@@ -199,7 +199,8 @@
   /* Просмотр видео */
   .VideoViewer-DetailsButtonsContainer,                          /* Меню у названия видео */
   ol[class*='-VideoList'] > div,                                 /* Реклама в похожих видео */
-  div:has( > .DirectInlineContainer)                             /* Реклама в проигрывателе */
+  div:has( > .DirectInlineContainer),                            /* Реклама в проигрывателе */
+  .VideoViewer-DetailsButtonsCarousel                            /* Доп кнопки у видео */
 /*   div[class*='-Layout'] > div[class*='_placement_before-player'] /* Реклама над проигрывателем */ 
   {
     display: none !important;
