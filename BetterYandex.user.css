@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.3
+@version        1.1.4
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -33,7 +33,29 @@
       display: none !important;
     }
 
-    /* Темный режим будет когда-нибудь */
+    /* Отключение перехода цвета для ссылки */
+    .home-link {
+      transition: unset !important;
+      -webkit-transition unset !important;
+    }
+  }
+
+  /* Если включен темный режим */
+  @container style(--BY-darkMode: 1) {
+    /* Полный темный режим будет когда-нибудь */
+    /* Страница 404 */
+    :root:has(.content__punto):has(.home-link[href*="/support/not-found"]) {
+      .home-link_blue_yes, .home-link_blue_yes:visited {
+        color: #8BB4DD !important;
+      }
+      .home-link:hover {
+        color: #FFFFFF !important;
+      }
+      body {
+        background: #18181a !important;
+        color: white !important;
+      }
+    }
   }
 }
 
