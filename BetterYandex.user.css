@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.1
+@version        1.1.2
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -650,8 +650,10 @@
   div:has(> .photos-share-view),                     /* Кнопка поделиться в фото */
   a[href*='/promo/'],                                /* Общая реклаиа */
   div[data-chunk="advert"],                          /* Реклама на карте */
-  .search-business-snippet-view__badge,              /* Подборки в поиске */
-  .search-snippet-view:has(> ._type_collection),     /* Подборки в поиске */
+  /* Поиск */
+  .search-business-snippet-view__badge,              /* Подборки */
+  .search-snippet-view:has(> ._type_collection),     /* Подборки */
+  .search-business-snippet-view__direct-unit,        /* Промо */
   /* Меню */
   .list-item-view:has(path[d*='6h2.086l']),          /* Поделиться */
   .list-item-view:has(path[d*='8.659-3.2']),         /* Редактировать карту */
