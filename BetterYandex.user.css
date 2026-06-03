@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.4
+@version        1.1.5
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -26,9 +26,8 @@
 
   /* Страница 404 */
   :root:has(.content__punto):has(.home-link[href*="/support/not-found"]) {
-    .foot,                /* Футер */
-    .content__punto,      /* Реклама Punto Switcher */
-    div:has(> .home-link) /* Поддержка */
+    .content__punto,                                /* Реклама Punto Switcher */
+    .layout__content div:has(> a[href*="/support"]) /* Поддержка */
     {
       display: none !important;
     }
@@ -36,19 +35,47 @@
     /* Отключение перехода цвета для ссылки */
     .home-link {
       transition: unset !important;
-      -webkit-transition unset !important;
+      -webkit-transition: unset !important;
+    }
+
+    /* Ссылка на главную страницу */
+    .foot {
+      position: unset;
+      color: transparent;
+    }
+    .foot__link {
+      color: unset !important;
+      pointer-events: none;
+      user-select: none;
+    }
+    a[href="//yandex.by/"] {
+      user-select: unset;
+      pointer-events: unset;
+      position: relative;
+      color: #0054b9 !important;
+      left: calc((20 + 70.5 + 12.9667) * -1px);
+      margin-left: 16px;
+      font-size: calc(200% - 85%);
+      top: -58px;
+    }
+    a[href="//yandex.by/"]::before {
+      content: "Главная страница ";
+      color: black;
+    }
+    .layout {
+      min-height: unset;
     }
   }
 
   /* Если включен темный режим */
   @container style(--BY-darkMode: 1) {
-    /* Полный темный режим будет когда-нибудь */
     /* Страница 404 */
     :root:has(.content__punto):has(.home-link[href*="/support/not-found"]) {
-      .home-link_blue_yes, .home-link_blue_yes:visited {
+      .home-link_blue_yes, .home-link_blue_yes:visited, 
+      a[href="//yandex.by/"], a[href="//yandex.by/"]:visited {
         color: #8BB4DD !important;
       }
-      .home-link:hover {
+      .home-link[href]:hover {
         color: #FFFFFF !important;
       }
       body {
