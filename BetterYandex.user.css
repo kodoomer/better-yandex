@@ -10,8 +10,8 @@
 @var checkbox   BY-darkMode "Темный режим (для страниц которые его не поддерживают)" 1
 @var checkbox   BY-blockSites "Блокировать веб-сайты (стандарт. вики-копии)" 1
 @var checkbox   BY-hpWeather "Оставить погоду на главной странице" 1
-@var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" ""дальше""
-@var text       BY-ceeNextBtn "^^^ но для i++" ""i++""
+@var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" '"дальше"'
+@var text       BY-ceeNextBtn "^^^ но для i++" '"i++"'
 @var checkbox   BY-enableWarn "Показывать предупреждение о нахождении на .ru домене" 1
 @var checkbox   BY-showGallery "Показывать галерею в результатах поиска (Карты)" 1
 ==/UserStyle== */
