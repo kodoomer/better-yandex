@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.6
+@version        1.1.7
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -136,7 +136,7 @@
   /* Макс. ширина и больший пробел от поиска */
   .mini-suggest__popup {
     margin-top: 6px;
-    max-width: 100%;
+    max-width: 100% !important;
   }
 }
 
