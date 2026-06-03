@@ -10,8 +10,8 @@
 @var checkbox   BY-darkMode "Темный режим (для страниц которые его не поддерживают)" 1
 @var checkbox   BY-blockSites "Блокировать веб-сайты (стандарт. вики-копии)" 1
 @var checkbox   BY-hpWeather "Оставить погоду на главной странице" 1
-@var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" '"дальше"'
-@var text       BY-ceeNextBtn "^^^ но для i++" '"i++"'
+@var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" ""дальше""
+@var text       BY-ceeNextBtn "^^^ но для i++" ""i++""
 @var checkbox   BY-enableWarn "Показывать предупреждение о нахождении на .ru домене" 1
 @var checkbox   BY-showGallery "Показывать галерею в результатах поиска (Карты)" 1
 ==/UserStyle== */
@@ -89,8 +89,8 @@
 @-moz-document regexp("(Search)?^https?:\\/\\/yandex\\.by(\\/\\w+)?\\/search\\/?(\\?.*)?$") {
   /* Поиск */
   
-  a[class*='InfoLink'][href*='photosearch'],              /* Кнопка (i) в поиске по картинке */
-  .Popup2:has(a[href*='photosearch']) .CbirPanel-History, /* Кнопка "История поисков" в окне "Визуальный поиск" */
+  a[class*="InfoLink"][href*="photosearch"],              /* Кнопка (i) в поиске по картинке */
+  .Popup2:has(a[href*="photosearch"]) .CbirPanel-History, /* Кнопка "История поисков" в окне "Визуальный поиск" */
   .HeaderUser-LoginButton,                                /* Кнопка "Войти" сверху */
   .SerpFooter,                                            /* Футер поиска */
   .EmptyPage-Recommendations,                             /* Рекомендации если ничего не найдено */
@@ -146,7 +146,7 @@
   .RelatedBottom,                                  /* Люди ищут (снизу) */
   .VideoFooter,                                    /* Кнопка "Смотреть все видео" после карусели видео */
   .ImagesGridMore,                                 /* Кнопка "Все картинки" в сетке картинок */
-  #search-result-aside > div:has(*[class*='adv']), /* Реклама на правой стороне */
+  #search-result-aside > div:has(*[class*="adv"]), /* Реклама на правой стороне */
   .b-page__footer,                                 /* Футер поиска */
   /* Карточки справа */
   .Popup2:has(.AuthorizationNeeded),               /* Поп-ап "войди что-бы послушать песню" */
@@ -209,7 +209,7 @@
   /* Поиск картинок */
   
   .ImagesViewer-Buttonfullscreen,                 /* Кнопка полного экрана у изображения */
-  div[class*="-Card"]:has(div[class*='ImagesV']), /* Реклама справа у изображения */
+  div[class*="-Card"]:has(div[class*="ImagesV"]), /* Реклама справа у изображения */
   .JustifierRowLayout-Incut,                      /* Реклама в списке изображений */
   .ImagesViewer-LayoutBottomblock                 /* Зона "Смотрите также" под изображением */
   {
@@ -260,10 +260,10 @@
   
   /* Просмотр видео */
   .VideoViewer-DetailsButtonsContainer,                          /* Меню у названия видео */
-  ol[class*='-VideoList'] > div,                                 /* Реклама в похожих видео */
+  ol[class*="-VideoList"] > div,                                 /* Реклама в похожих видео */
   div:has( > .DirectInlineContainer),                            /* Реклама в проигрывателе */
   .VideoViewer-DetailsButtonsCarousel                            /* Доп кнопки у видео */
-/*   div[class*='-Layout'] > div[class*='_placement_before-player'] /* Реклама над проигрывателем */ 
+/*   div[class*="-Layout"] > div[class*="_placement_before-player"] /* Реклама над проигрывателем */ 
   {
     display: none !important;
   }
@@ -315,8 +315,8 @@
   
   .headline__personal > *:not(:has(> .usermenu-portal)),                   /* Все в хедлайн кроме меню */
   .alerts,                                                                 /* Сообщения (о погоде, т.д.) */
-  .search3__wrapper + div[class^='body__'] > div,                          /* Реклама под поиском */
-  div[class^='body'] > div[class*='-spacer'],                              /* Пустое место над поиском */
+  .search3__wrapper + div[class^="body__"] > div,                          /* Реклама под поиском */
+  div[class^="body"] > div[class*="-spacer"],                              /* Пустое место над поиском */
   *:has(> a[data-statlog*=".weather"])                                     /* Информеры под поиском */ 
   {
     display: none !important;
@@ -345,7 +345,7 @@
   }
   
   /* Круглый хавер результатов */
-  div[id^='suggest-item-'] {
+  div[id^="suggest-item-"] {
     border-radius: 99999px !important;
   }
   
@@ -381,7 +381,7 @@
   div[role="separator"]:not(:nth-of-type(4)),                 /* Двойной разделитель в одинарный */
   a[data-testid="passport"],                                  /* Кнопка "Уравление аккаунтом" */
   a[data-testid="support"],                                   /* Кнопка "Справка" */
-  div[class*="side_"] path[fill='var(--id-logo-brand-color)'] /* "ID" в логотипе */
+  div[class*="side_"] path[fill="var(--id-logo-brand-color)"] /* "ID" в логотипе */
   {
     display: none !important;
   }
@@ -400,7 +400,7 @@
   }
   
   /* Поправить размер и отключить ссылку логотипа */
-  a:has(path[fill='var(--id-logo-brand-color)']) {
+  a:has(path[fill="var(--id-logo-brand-color)"]) {
     pointer-events: none;
     --id-logo-short-height: 24px !important;
   }
@@ -433,7 +433,7 @@
     }
 
     /* Режим "Только текст": темный режим (и стили) */
-    body:has(#yandex-cache-hdr span path[d^='M3.5.003h4.757A3']) {
+    body:has(#yandex-cache-hdr span path[d^="M3.5.003h4.757A3"]) {
       & { /* Фон */
         background-color: #18181a;
       }
@@ -473,36 +473,36 @@
   
   dialog[class*="RateMe_dialog"],                          /* Поп-ап "Как вам Яндекс Погода?" */
   div[class*="AppPromoInner_container"],                   /* Реклама приложения */
-  div[class*='AppLeftPanelPromos_bottomLinks'],            /* Нижние ссылки на левом меню */
-  div[class*='MainPage_topBlockWithMoney'],                /* Реклама на главной странице */
+  div[class*="AppLeftPanelPromos_bottomLinks"],            /* Нижние ссылки на левом меню */
+  div[class*="MainPage_topBlockWithMoney"],                /* Реклама на главной странице */
   section:has(> iframe[class*="Camera_camera__stream"]),   /* Запись камеры на главной странице */
-  article[class*='AppMapsWidget_article'],                 /* Блок "Прогноз погоды на картах" (не нужен) */
-  section:has(> article[class*='AppBlogPreview_article']), /* Превью блога */
-  article[class*='AppMainPageMonthLink_month'],            /* Кнопка "Пргноз на месяц" (не нужна) */
+  article[class*="AppMapsWidget_article"],                 /* Блок "Прогноз погоды на картах" (не нужен) */
+  section:has(> article[class*="AppBlogPreview_article"]), /* Превью блога */
+  article[class*="AppMainPageMonthLink_month"],            /* Кнопка "Пргноз на месяц" (не нужна) */
   #footer_ecom_adv,                                        /* Скроллер с рекламой */
-  section[class*='AppWeatherFAQ_section'],                 /* FAQ о погоде */
-  div[class*='AppOtherCities_container'],                  /* Список других городов в футере */
+  section[class*="AppWeatherFAQ_section"],                 /* FAQ о погоде */
+  div[class*="AppOtherCities_container"],                  /* Список других городов в футере */
   div[class*="AppFooterLinks_links"],                      /* Ссылки в футере */
-  div[class*='AppFooterMeteumAboutText'],                  /* Про Meteum в футере */
+  div[class*="AppFooterMeteumAboutText"],                  /* Про Meteum в футере */
   div[class*="AppReportForm_container"],                   /* Да/Нет у погоды */
-  aside:has(div[class*='AppMoneySidebar']),                /* Реклама справа */
-  div[class*='AppSettingsClientModalUser_container'],      /* Кнопка войти в настройках */
-  div[class*='FavoriteButton_favorite'],                   /* Кнопка "В избранное" у города */
-  div:has(> div[class*='AppWidgetNowcast_promoWrap']),     /* Реклама и вопросы снизу карты */
-  div[class*='style_cameraPlacemark'],                     /* Точки камер на карте */
-  div[class*='Layers_umbrellaPointLayer'],                 /* Зонтики на карте */
-  div[class*='AppWidgetNowcastButton_wrap'],               /* Кнопка "Карта осадков" на главной странице */
-  li[class*='AppForecastMoney_wrap'],                      /* Реклама в прогнозе */
+  aside:has(div[class*="AppMoneySidebar"]),                /* Реклама справа */
+  div[class*="AppSettingsClientModalUser_container"],      /* Кнопка войти в настройках */
+  div[class*="FavoriteButton_favorite"],                   /* Кнопка "В избранное" у города */
+  div:has(> div[class*="AppWidgetNowcast_promoWrap"]),     /* Реклама и вопросы снизу карты */
+  div[class*="style_cameraPlacemark"],                     /* Точки камер на карте */
+  div[class*="Layers_umbrellaPointLayer"],                 /* Зонтики на карте */
+  div[class*="AppWidgetNowcastButton_wrap"],               /* Кнопка "Карта осадков" на главной странице */
+  li[class*="AppForecastMoney_wrap"],                      /* Реклама в прогнозе */
   div[class*="AppWidgetNowcast_promoWrap"],                /* Реклама у карты на главной странице */
   div[class*="AppBlogArticlesSuggest_suggest"],
-  div[class*='_adv_'],                                     /* Реклама */
+  div[class*="_adv_"],                                     /* Реклама */
   div[class*="AppAllergyDoctors_container"],               /* Секция "Отвечают врачи" на странице пыльцы */
-  ul[class*='AppHeaderNavigation_list'] > li:last-child,   /* Опция "Статьи о погоде" в меню */
-  *[class*='AppMoney'],                                    /* Реклама */
+  ul[class*="AppHeaderNavigation_list"] > li:last-child,   /* Опция "Статьи о погоде" в меню */
+  *[class*="AppMoney"],                                    /* Реклама */
   div[class*="AppAllergyLevels_report"],                   /* Секция "Как ощущается аллергия" */
-  div[class*='AppGdprPanel_wrapper'],                      /* Настройки куки */
-  div[class*='MainDetailsLinks_wrapper'],                  /* Ссылки на категории (не нужны) */
-  div[class*='AppAllergyForecast_maps__expandIcon']        /* Кнопка расширить на мини карте пыльцы */
+  div[class*="AppGdprPanel_wrapper"],                      /* Настройки куки */
+  div[class*="MainDetailsLinks_wrapper"],                  /* Ссылки на категории (не нужны) */
+  div[class*="AppAllergyForecast_maps__expandIcon"]        /* Кнопка расширить на мини карте пыльцы */
   {
     display: none !important;
   }
@@ -513,20 +513,20 @@
   }
   
   /* Поправка цветов в настройках */
-  dialog[class*='AppSettingsClientModal_popover'] div[class*='DialogsContent_content'] > div {
+  dialog[class*="AppSettingsClientModal_popover"] div[class*="DialogsContent_content"] > div {
     background-color: var(--surface-elevated-200) !important;
   }
-  div[class*='RadioGroup_toggle__bg'] {
+  div[class*="RadioGroup_toggle__bg"] {
     background-color: var(--decor-neutral-50) !important;
   }
   
   /* Открепить заголовок */
-  header[class*='AppHeader_header'] {
+  header[class*="AppHeader_header"] {
     position: relative;
   }
   
   /* Открепить левое меню */
-  aside[class*='AppLayoutTypeMain_left'] {
+  aside[class*="AppLayoutTypeMain_left"] {
     position: static;
   }
   
@@ -540,7 +540,7 @@
   }
   
   /* Поправка высоты блока "Магнитные бури" */
-  div[class*='AppMagneticStormsChart_charts'] {
+  div[class*="AppMagneticStormsChart_charts"] {
     margin-bottom: 0;
   }
   
@@ -550,12 +550,12 @@
   }
   
   /* Поправка списка деревьев с пыльцой */
-  div[class*='AppAllergyForecast_allergensList'] {
+  div[class*="AppAllergyForecast_allergensList"] {
     display: flex !important;
   }
   
   /* Кнопка меню */
-  button[class*='AppAccordion_summary'] {
+  button[class*="AppAccordion_summary"] {
     /* Поправка размера */
     & {
       width: var(--layout-left-panel) !important;
@@ -572,65 +572,65 @@
   }
   
   /* Скрытие настроек */
-  ul[class*='AppSettingsClientModal_content__list'] > li {
+  ul[class*="AppSettingsClientModal_content__list"] > li {
     /* Скрыть все настройки */
     & {
       display: none;
     }
     /* Показать "Единицы измерений" */
-    &:has(path[d*='3H3a1']) {
+    &:has(path[d*="3H3a1"]) {
       display: unset;
     }
     /* Показать "Выбор языка" (надо поправить этот стиль) */
-    &:has(span[class*='AppSettingsClientModal_item__name']):not(:has(span[class*='AppSettingsClientModal_item__name'] svg)) {
+    &:has(span[class*="AppSettingsClientModal_item__name"]):not(:has(span[class*="AppSettingsClientModal_item__name"] svg)) {
       display: unset;
     }
   }
   
   /* Поправить пробел в найстройках */
-  div[class*='AppSettingsClientModalTheme_theme'] {
+  div[class*="AppSettingsClientModalTheme_theme"] {
     margin-bottom: 0;
     padding-bottom: 8px;
   }
   
   /* Лэйаут погоды grid -> flex */
   
-  header[class*='AppHeader_header'] {
+  header[class*="AppHeader_header"] {
     display: flex;
     max-width: none;
     margin: 0;
   }
-  div[class*='AppHeader_logo'] {
+  div[class*="AppHeader_logo"] {
     width: calc(var(--layout-left-panel) - 16px);
   }
-  form[class*='Suggest_form'] {
+  form[class*="Suggest_form"] {
     max-width: 1000px;
     margin: 0 auto;
   }
 
-  main[class*='AppLayoutTypeMain_main']:has(> section[class*='AppWidgetNowcast_container']) {
+  main[class*="AppLayoutTypeMain_main"]:has(> section[class*="AppWidgetNowcast_container"]) {
     padding: 0;
   }
-  div[class*='AppLayoutTypeMain_contentWrapper'] {
+  div[class*="AppLayoutTypeMain_contentWrapper"] {
     margin: 0;
     display: flex;
     flex-direction: row-reverse;
     width: unset;
   }
-  aside[class*='AppLayoutTypeMain_left'] {
+  aside[class*="AppLayoutTypeMain_left"] {
     padding: 0 !important;
     margin: 0 !important;
     width: var(--layout-left-panel) !important;
   }
-  div[class*='AppLayoutTypeMain_centerWrapper'] {
+  div[class*="AppLayoutTypeMain_centerWrapper"] {
     display: block;
     flex: 1;
     width: 0;
   }
-  div[class*='AppAccordion_details'] {
+  div[class*="AppAccordion_details"] {
     position: absolute;
   }
-  div[class*='AppLayoutCommon_overlay'] {
+  div[class*="AppLayoutCommon_overlay"] {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -650,7 +650,7 @@
   #examplesApp div:has(> h2),                                                          /* Секция "Популярные направления" в примерах */
   #srcTypeTranslation,                                                                 /* Кнопка "Быстрый перевод" (вкл./выкл. Переводчик AI) */
   #yaGptDstNextGenContainer,                                                           /* Определение от Переводчик AI */
-  div:has(> div > div > div > svg > g[filter*='url(#promo-type-translation_svg__a)']), /* Реклама Переводчик AI если в переводе не введен текст */
+  div:has(> div > div > div > svg > g[filter*="url(#promo-type-translation_svg__a)"]), /* Реклама Переводчик AI если в переводе не введен текст */
   div:has(> div[data-qa="translation-feedback"]),                                      /* Кнопки у перевода (лайк, поделиться и т.д.)*/
   li:has(> a[data-tracker-goal="FOOTER_LINK_NAVIGATE_BROWSER"]),                       /* Кнопка "Переводите в Яндекс Браузере" в футере */
   #dstDefinition,                                                                      /* Определения слова в окне результата (википедия) */
@@ -709,19 +709,19 @@
   footer > *:not(.map-copyrights__scale-line),       /* Ненужное в нижнем правом углу */
   .user-menu-control,                                /* Кнопка меню аккаунта */
   div:has(> .photos-share-view),                     /* Кнопка поделиться в фото */
-  a[href*='/promo/'],                                /* Общая реклаиа */
+  a[href*="/promo/"],                                /* Общая реклаиа */
   div[data-chunk="advert"],                          /* Реклама на карте */
   /* Поиск */
   .search-business-snippet-view__badge,              /* Подборки */
   .search-snippet-view:has(> ._type_collection),     /* Подборки */
   .search-business-snippet-view__direct-unit,        /* Промо */
   /* Меню */
-  .list-item-view:has(path[d*='6h2.086l']),          /* Поделиться */
-  .list-item-view:has(path[d*='8.659-3.2']),         /* Редактировать карту */
-  .list-item-view:has(path[d*='V5.974a1.']),         /* Закладки */
-  .list-item-view:has(path[d*='824a.764.764']),      /* Линейка (копия) */
-  .list-item-view[href*='map-const'],                /* Мои карты */
-  .list-item-view[href*='support'],                  /* Справка */
+  .list-item-view:has(path[d*="6h2.086l"]),          /* Поделиться */
+  .list-item-view:has(path[d*="8.659-3.2"]),         /* Редактировать карту */
+  .list-item-view:has(path[d*="V5.974a1."]),         /* Закладки */
+  .list-item-view:has(path[d*="824a.764.764"]),      /* Линейка (копия) */
+  .list-item-view[href*="map-const"],                /* Мои карты */
+  .list-item-view[href*="support"],                  /* Справка */
   .map-layers-view__unvisited,                       /* Голуб. точка */
   /* Сайдбар */
   div[data-chunk="discovery-home"],                  /* Рекомендации */
