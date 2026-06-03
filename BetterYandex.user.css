@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.0.3
+@version        1.1.0
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -13,6 +13,7 @@
 @var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" '"дальше"'
 @var text       BY-ceeNextBtn "^^^ но для i++" '"i++"'
 @var checkbox   BY-enableWarn "Показывать предупреждение о нахождении на .ru домене" 1
+@var checkbox   BY-showGallery "Показывать галерею в результатах поиска (Карты)" 1
 ==/UserStyle== */
 
 @-moz-document regexp("(Global)?^https?:\\/\\/yandex\\.by\\/?.*$") {
@@ -638,5 +639,154 @@
   /* Попрака нижнего отступа ввода */
   #textarea {
     border-bottom-width: 72px;
+  }
+}
+
+@-moz-document regexp("(Maps)?^https?:\\/\\/yandex\\.by\\/maps\\/?.+$") {
+  /* Стили карт */
+  
+  footer > *:not(.map-copyrights__scale-line),       /* Ненужное в нижнем правом углу */
+  .user-menu-control,                                /* Кнопка меню аккаунта */
+  div:has(> .photos-share-view),                     /* Кнопка поделиться в фото */
+  a[href*='/promo/'],                                /* Общая реклаиа */
+  div[data-chunk="advert"],                          /* Реклама на карте */
+  .search-business-snippet-view__badge,              /* Подборки в поиске */
+  /* Меню */
+  .list-item-view:has(path[d*='6h2.086l']),          /* Поделиться */
+  .list-item-view:has(path[d*='8.659-3.2']),         /* Редактировать карту */
+  .list-item-view:has(path[d*='V5.974a1.']),         /* Закладки */
+  .list-item-view:has(path[d*='824a.764.764']),      /* Линейка (копия) */
+  .list-item-view[href*='map-const'],                /* Мои карты */
+  .list-item-view[href*='support'],                  /* Справка */
+  .map-layers-view__unvisited,                       /* Голуб. точка */
+  /* Сайдбар */
+  div[data-chunk="discovery-home"],                  /* Рекомендации */
+  div:has(> div[data-chunk="promo-chunk"]),          /* Реклама */
+  /* Пустой поиск */
+  .add-business-view,                                /* Добавьте бизнеc */
+  .empty-search-view__category-list,                 /* Рекомендации */
+  /* Маршрут */
+  .route-list-view__mobile-share,                    /* Перекинуть на телефон */
+  .bicycle-route-snippet-view__feedback,             /* Исправить маршрут */
+  .pedestrian-route-snippet-view__feedback,          /* Исправить маршрут */      
+  .route-snippet-feedback-button-view,               /* Исправить маршрут */
+  .route-detailed-view__edit,                        /* Исправить маршрут */
+  /* Карточка места */
+  div:has(> .business-advert-offer-banner-view),     /* Реклама Яндекс Пэй */
+  .business-card-title-view__advert-offer-hint,      /* Реклама Яндекс Пэй */
+  div:has(> .business-card-view__promotion-content), /* Реклама Яндекс Пэй */
+  .business-card-view__edit,                         /* Исправить неточность */
+  .business-feature-a11y-group-view__edit,           /* Редактировать */
+  .business-card-view__add-photo,                    /* Добавить свое фото */
+  .card-footer-view,                                 /* Футер в мини карточке */
+  .business-card-overview-tab-view__gray-section,    /* Футер */
+  .photos-player-controls-view,                      /* Кнопки в ниж. правом углу фото */
+  .card-reviews-view__actions,                       /* Кнопки в ниж. правом углу отзывы */
+  .business-feature-a11y-additional-view__reviews,   /* Написать отзыв про доступность */
+  div:has(> .business-stories-view),                 /* Сторисы. реально? */
+  div:has(> .discovery-related-view),                /* Подборки */
+  .business-ownership-view__link,                    /* Подключить рекламу */
+  /* Отзывы */
+  .business-review-view__subscription-control,       /* Подписаться */
+  .business-user-review-card-view,                   /* Как вам это место? */
+  .business-review-view__share-control               /* Поделиться */
+  {
+    display: none !important;
+  }
+
+  /* Скрыть галерею в результатах поиска */
+  @container style(--BY-showGallery: 0) {
+    .search-business-snippet-view__gallery {
+      display: none;
+    }
+  }
+
+  /* Поправка отступа если нет результатов поиска */
+  .something-wrong-view {
+    margin-bottom: 18px;
+  }
+
+  /* Поправить углы оценки */
+  .business-summary-rating__main, .business-summary-rating-badge-view { 
+    border-radius: 8px !important;
+  }
+
+  /* Поправка дизайна ответа организации */
+  .business-review-comment-content__bubble {
+    padding-top: 0 !important;
+    background: unset !important;
+  }
+}
+
+@-moz-document regexp("(Maps print)?^https?:\\/\\/yandex\\.by\\/maps\\/print\\/?.+$") {
+  /* Стили печати карт */
+  
+  .print-promo-banner-view, /* Баннер рекламы приложения */
+  .print-view__disclaimer,  /* Предупреждение о размере и формате бумаги */
+  .print-view__promo-bar,   /* Промо приложения под картой */
+  .print-view__footer,      /* Футер */
+  .print-view__qr,          /* QR код */
+  .print-map-view__logo     /* Логотип */
+  {
+    display: none !important;
+  }
+
+  /* Поправка нижнего отступа страницы */
+  .print-view__first-page {
+    margin-bottom: 10mm;
+  }
+}
+
+@-moz-document regexp("(Metro)?^https?:\\/\\/yandex\\.by\\/metro\\/?.+$") {
+  /* Стили метро */
+  
+  .metro-sidebar-view__mobile-share-container, /* Реклама приложения */
+  .metro-footer-view                           /* Футер */
+  {
+    display: none !important;
+  }
+
+  /* Если включен темный режим */
+  @container style(--BY-darkMode: 1) {
+    * { /* Цвета с /maps */
+      --color-buttons-floating: #1b1c1f;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --color-text-primary: #f0f0f0;
+      --color-text-secondary: #999;
+      --color-text-primary-variant: #ccc;
+      --color-bw-black: #f0f0f0;
+      --color-bw-white: #212326;
+      --color-buttons-secondary: #393e46;
+      --color-bg-primary: #212326;
+      --color-bg-additional: #111;
+      --color-bg-separator: #2e3238;
+      --color-icons-primary: #ccc;
+    }
+    body {
+      color: var(--color-text-primary);
+      background: var(--color-bg-primary);
+    }
+    .scheme-objects-view__scheme-svg._text-shadow text { /* Текст на карте */
+      fill: var(--color-text-primary);
+      text-shadow: 0 0 .1em var(--color-text-primary);
+    }
+    *[stroke="#ffffff"] {
+      stroke: #000000;
+    }
+    path[fill="#D9F5FF"] { /* Вода */
+      fill: #446d7e;
+    }
+    .popup._type_air {
+      color: var(--color-text-primary);
+    }
+    .metro-app__sidebar-container {
+      box-shadow: 0 0 4px rgba(0,0,0,.2);
+    }
+    .popup._type_error,
+    .popup._type_help,
+    .popup._type_tooltip {
+      border-radius:4px;
+      color: var(--color-text-primary);
+    }
   }
 }
