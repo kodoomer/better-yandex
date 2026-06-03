@@ -12,10 +12,11 @@
 > Стиль расчитан на то, что вы не вошли в аккаунт (и не планируете). Если вы вошли, некоторый фунционал будет недоступен.
 
 На текущий момент поддерживаются следующие страницы:
-- Главная страница (`/`)
-- Поиск сайтов (`/search`)
-- Поиск картинок (и главная страница) (`/images*`)
-- Поиск видео (и просмотр) (`/video/*`)
-- Переводчик (`translate.yandex.COM`)
-- Погода (`/pogoda`)
-- Веб-кеш (`yandexwebcache.net/yandbtm`)
+- Главная страница ([/](//yandex.by/))
+- Поиск сайтов ([/search](//yandex.by/search))
+- Поиск картинок (и главная страница) ([/images*](//yandex.by/images))
+- Поиск видео (и просмотр) ([/video/*](//yandex.by/video))
+- Переводчик ([translate.yandex.COM](//translate.yandex.com))
+- Погода ([/pogoda](//yandex.by/pogoda))
+- Веб-кеш ([yandexwebcache.net/yandbtm](//yandexwebcache.net/yandbtm))
+- Карты и метро ([/maps](//yandex.by/maps), [/metro](//yandex.by/metro))
