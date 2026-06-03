@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.2
+@version        1.1.3
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -16,12 +16,24 @@
 @var checkbox   BY-showGallery "Показывать галерею в результатах поиска (Карты)" 1
 ==/UserStyle== */
 
-@-moz-document regexp("(Global)?^https?:\\/\\/yandex\\.by\\/?.*$") {
+@-moz-document regexp("(Global)?^https?:\\/\\/(\\w+\\.)?yandex\\.by\\/?.*$") {
   /* Общие стили */
   
   div.Distribution /* Реклама Яндекс Браузера */
   {
     display: none !important;
+  }
+
+  /* Страница 404 */
+  :root:has(.content__punto):has(.home-link[href*="/support/not-found"]) {
+    .foot,                /* Футер */
+    .content__punto,      /* Реклама Punto Switcher */
+    div:has(> .home-link) /* Поддержка */
+    {
+      display: none !important;
+    }
+
+    /* Темный режим будет когда-нибудь */
   }
 }
 
