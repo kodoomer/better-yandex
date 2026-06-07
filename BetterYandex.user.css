@@ -162,7 +162,9 @@
     & .Organic-Actions, /* Кнопка посмотреть PDF */
     /* Реклама в результатах поиска (добавлять) */
     &:has(.Organic-ContentWrapper > .OrganicText > div), /* "Реклама" перед описанием */
-    &:not(li)                                            /* Общее правило */
+    &:not(li),                                           /* Общее правило */
+    &:has(.AdvLabel),                                    /* "Реклама" в ниж. углу (общее правило) */
+    &.RsyaOrganic                                        /* Секция "Может заинтересовать" */
     {
       display: none !important;
     }
