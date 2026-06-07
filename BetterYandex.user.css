@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Better Yandex (.BY)
 @namespace      dev.kodoomer
-@version        1.1.8
+@version        1.1.9
 @homepageURL    https://github.com/kodoomer/better-yandex
 @supportURL     https://github.com/kodoomer/better-yandex/issues
 @preprocessor   default
@@ -245,7 +245,8 @@
   .Popup2:has(.SettingsToolbarLangFilterDistributionOnboarding), /* Поп-ап под кнопкой "В переводе нейросетей" */
   .SerpListFeature > li:not(.VideoSnippetSerpFeature),           /* Реклама в списке видео */
   .SearchPageGridDirect,                                         /* Реклама в сетке видео */
-  .VideoExtralinks                                               /* Три точки у видео */
+  .VideoExtralinks,                                              /* Три точки у видео */
+  .VideoSnippet-Tags                                             /* Кпоки у видео (пересказ) */
   {
     display: none !important;
   }
@@ -266,7 +267,6 @@
   ol[class*="-VideoList"] > div,                                 /* Реклама в похожих видео */
   div:has( > .DirectInlineContainer),                            /* Реклама в проигрывателе */
   .VideoViewer-DetailsButtonsCarousel                            /* Доп кнопки у видео */
-/*   div[class*="-Layout"] > div[class*="_placement_before-player"] /* Реклама над проигрывателем */ 
   {
     display: none !important;
   }
