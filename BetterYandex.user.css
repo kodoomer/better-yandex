@@ -54,7 +54,7 @@
       position: relative;
       color: #0054b9 !important;
       left: calc((20 + 70.5 + 12.9667) * -1px);
-      margin-left: 16px;
+      margin-left: 166px;
       font-size: calc(200% - 85%);
       top: -58px;
     }
@@ -214,7 +214,8 @@
   .ImagesViewer-Buttonfullscreen,                 /* Кнопка полного экрана у изображения */
   div[class*="-Card"]:has(div[class*="ImagesV"]), /* Реклама справа у изображения */
   .JustifierRowLayout-Incut,                      /* Реклама в списке изображений */
-  .ImagesViewer-LayoutBottomblock                 /* Зона "Смотрите также" под изображением */
+  .ImagesViewer-LayoutBottomblock,                /* Зона "Смотрите также" под изображением */
+  a[href*='/promo/photo']                         /* Кнопка "Узнать больше" */
   {
     display: none !important;
   }
