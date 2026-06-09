@@ -25,3 +25,7 @@
 - Погода ([/pogoda](//yandex.by/pogoda))
 - Веб-кеш ([yandexwebcache.net/yandbtm](//yandexwebcache.net/yandbtm))
 - Карты и метро ([/maps](//yandex.by/maps), [/metro](//yandex.by/metro))
+
+#### todo
+- [ ] поправить / добавить комметарии
+- [ ] разделить метро, переводчик, погоду на несколько ссылок
