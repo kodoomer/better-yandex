@@ -720,6 +720,7 @@
   .search-business-snippet-view__badge,              /* Подборки */
   .search-snippet-view:has(> ._type_collection),     /* Подборки */
   .search-business-snippet-view__direct-unit,        /* Промо */
+  .business-verified-badge__order-link,              /* Подключить приоритет */
   /* Меню */
   .list-item-view:has(path[d*="6h2.086l"]),          /* Поделиться */
   .list-item-view:has(path[d*="8.659-3.2"]),         /* Редактировать карту */
@@ -745,6 +746,7 @@
   .business-card-title-view__advert-offer-hint,      /* Реклама Яндекс Пэй */
   div:has(> .business-card-view__promotion-content), /* Реклама Яндекс Пэй */
   .business-card-view__edit,                         /* Исправить неточность */
+  .business-card-overview-tab-view__edit,            /* Исправить неточность */
   .business-feature-a11y-group-view__edit,           /* Редактировать */
   .business-card-view__add-photo,                    /* Добавить свое фото */
   .card-footer-view,                                 /* Футер в мини карточке */
