@@ -8,7 +8,7 @@
 @author         kodoomer
 
 @var checkbox   BY-darkMode "Темный режим (для страниц которые его не поддерживают)" 1
-@var checkbox   BY-blockSites "Блокировать веб-сайты (стандарт. вики-копии)" 1
+@var checkbox   BY-blockSites "Блокировать веб-сайты (надо в CSS настраивать)" 1
 @var checkbox   BY-hpWeather "Оставить погоду на главной странице" 1
 @var text       BY-nextBtn "Текст кнопки Дальше в списке страниц (в кавычках)" '"дальше"'
 @var text       BY-ceeNextBtn "^^^ но для i++" '"i++"'
@@ -174,14 +174,10 @@
   @container style(--BY-blockSites: 1) {
     ul[id^="search-"] > li {
       /* 
-        Конкретные сайты (можно кастомизировать!)
-        Форматы: 
-          По ссылке: &:has(.OrganicTitle-Link[href*="<ССЫЛКА>"]),
+        Конкретные сайты (надо настроить для BY-blockSites)
+        Формат: &:has(.OrganicTitle-Link[href*="<ССЫЛКА>"]),
       */ 
-      &:has(.OrganicTitle-Link[href*="ruwiki.ru"]),                  /* ruwiki.ru */
-      &:has(.OrganicTitle-Link[href*="xn--h1ajim.xn--p1ai"]),        /* руни.рф */
-      &:has(.OrganicTitle-Link[href*="mozgotvet.com"]),              /* mozgotvet.com */
-      &:has(.OrganicTitle-Link[href*="chatinfo.ru"])                 /* chatinfo.ru */
+      &:has(.OrganicTitle-Link[href*="example.website.net"]),
       {
         display: none !important;
       }
